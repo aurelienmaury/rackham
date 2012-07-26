@@ -1,6 +1,10 @@
-* Add remote rackham instance
-* Upload from one instance to another
-* Notification in page
+PROJECT BACKLOG
+===============
+
+* feature : Add remote rackham instance
+* feature : json endpoint with file catalog
 * Real singlepage app with knockout.js
-* listen on localhost only for web, on configured
+* Notifications in page: new worker
+* browse remote catalog from webpage
+* shared chat between every connected instances
 

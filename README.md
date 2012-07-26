@@ -1,6 +1,6 @@
 rackham
 =======
-{{
-vertx run rackham.groovy
-}}
+
+> vertx run rackham.groovy
+
 More here when milestone reached...

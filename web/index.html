@@ -1,0 +1,51 @@
+<html>
+<head>
+  <title>RedErik: Chat, Share or Die</title>
+  <link href="static/css/style.css" rel="stylesheet" media="all" type="text/css"> 
+</head>
+
+<body>
+
+  <div class="header">
+    <img src="static/images/pbox.png" class="logo"/>
+  </div>
+
+  <div id="events" class="events">
+  </div>
+
+  <div class="sep"></div>
+
+  <div id="chat" class="zone left">
+      <h2>Chat</h2>
+      
+      <div id="chatOutput" class="chatOutput">
+      </div>
+
+      <div class="chatCommand">
+        <input type="text" id="chatInput" data-bind="value: chatMessage, event: { keyup: sendMessage }" />
+      </div>
+  </div>
+
+  <div id="share" class="zone right">
+
+    <h2>Share</h2>
+    
+    <form action="/upload" method="post" enctype="multipart/form-data">
+      <input type="file" multiple="false" name="toStore"/>
+      <input type="submit" value="send"/>
+    </form>
+
+    <div id="files" class="files"></div>
+
+  </div>
+
+  <div class="sep"></div>
+</body>
+
+<script src='static/js3rdparty/jquery-1.7.1.min.js'></script>
+<script src='static/js3rdparty/sockjs-0.3.min.js'></script>
+<script src='static/js3rdparty/knockout-2.1.0.js'></script>
+<script src='static/js/vertxbus.js'></script>
+<script src='static/js/client_app.js'></script>
+
+</html>

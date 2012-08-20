@@ -7,12 +7,12 @@ h2 { text-align: center; }
 .sep { clear:both; }
 
 .header {
-	text-align: center; padding-top: 10px; margin-bottom: 5px;
+	text-align: center; padding-top: 5px; padding-bottom: 5px;
 }
 
 
 .events { text-align: center; }
-.logo { width:100px; margin-bottom: 30px;}
+.logo { width:100px; }
 .left {	width: 45%; float:left; margin-left: 30px;}
 .right { width:45%;	float:right; margin-right: 30px;}
 

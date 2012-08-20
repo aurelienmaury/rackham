@@ -1,8 +1,8 @@
 def nicks = [:]
 
-def adjectives = [ 'adorable', 'beautiful', 'strong', 'elegant', 'fancy', 'awesome', 'omnipotent', 'ugly', 'big', 'black', 'frigid', 'putrid' ]
+def adjectives = [ 'adorable', 'strong', 'elegant', 'fancy', 'awesome', 'omnipotent', 'ugly', 'big', 'black', 'frigid', 'putrid' ]
 
-def nouns = ['vampire','troll','dwarf','samurai','ninja','goblin','ice','blob']
+def nouns = ['vampire','troll','dwarf','samurai','ninja','goblin','ice','blob', 'wind','sword']
 
 def getNick = { uuid ->
 

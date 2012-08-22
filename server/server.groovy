@@ -53,7 +53,7 @@ void addRoutes(httpServer, repository) {
             req.response.putHeader('Content-Type', 'application/json')
 
 
-	    def extensions = ['txt','avi','jpg']
+def extensions = ['txt','avi','jpg']
 
             vertx.fileSystem.readDir(repo, '(?i).*\\.('+extensions.join('|')+')') { ar ->
                 req.response << '{"files":['
@@ -79,11 +79,12 @@ void addRoutes(httpServer, repository) {
         if (!req.path.contains("..")) {
             vertx.fileSystem.exists(repo + req.params['param0']) { ar ->
                 if (ar.succeeded() && ar.result) {
+		    req.response.putHeader("Content-Type", "application/octet-stream")
                     req.response.sendFile(repo + req.params['param0'])
                 } else {
                     req.response.with {
                         statusCode = 404
-                        statusMessage = 'these aren\'t the droids you\'re looking for'
+                        statusMessage = 'These are not the droids you are looking for'
                         end()
                     }
                 }
@@ -94,28 +95,6 @@ void addRoutes(httpServer, repository) {
                 statusMessage = 'forbidden'
                 end()
             }
-        }
-    }
-
-    routeMatcher.post('/upload') { req ->
-        req.pause()
-        def filename = repo + "${UUID.randomUUID()}.uploaded"
-        vertx.fileSystem.open(filename) { ares ->
-            def file = ares.result
-
-            println "req => " + req.toStore
-
-            def pump = createPump(req.params['toStore'], file.writeStream)
-
-            req.endHandler {
-                file.close {
-                    println "Uploaded ${pump.bytesPumped} bytes to $filename"
-                    req.response.end()
-                }
-            }
-
-            pump.start()
-            req.resume()
         }
     }
 
@@ -148,5 +127,4 @@ void initSockJS(httpServer) {
 
     httpServer
 }
-
 

@@ -1,8 +1,9 @@
 
 // Configuration for the web server
 def webServerConf = [
-  host: '0.0.0.0',
-  port: 8080
+  host: container.config['host'] ?: '0.0.0.0',
+  port: container.config['port'] ?: 8080,
+  repository: container.config['repository'] ?: '.'
 ]
 
 container.with {

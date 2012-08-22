@@ -48,6 +48,6 @@ a.btn {
 
 .files p {	margin: 0; margin-bottom: 5px; }
 
-.files p a { color: #000; text-decoration: none;}
+.files p a { color: #000; text-decoration: underline;}
 .files p a:visited { color: #000; }
-.files p a:hover { color: #000; text-decoration: underline; }
+.files p a:hover { color: #000; text-decoration: none; }

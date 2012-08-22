@@ -2,9 +2,11 @@ import static org.vertx.groovy.core.streams.Pump.createPump
 
 import org.vertx.groovy.core.http.RouteMatcher
 
-int port = container.config['port'] ?: 80
-String host = container.config['host'] ?: '0.0.0.0'
-createServer().listen(port, host)
+int port = container.config['port']
+String host = container.config['host']
+String repository = container.config['repository']
+
+createServer(repository).listen(port, host)
 
 println "Server started on ${host}:${port}"
 
@@ -12,21 +14,21 @@ println "Server started on ${host}:${port}"
  * Creates Http Main Server
  *
  */
-def createServer() {
+def createServer(String repository) {
 
     def httpServer = vertx.createHttpServer()
 
-    addRoutes(httpServer)
+    addRoutes(httpServer, repository)
 
     initSockJS(httpServer)
 
     httpServer
 }
 
-void addRoutes(httpServer) {
+void addRoutes(httpServer, repository) {
     def routeMatcher = new RouteMatcher()
 
-    String repo = new File('repo').absolutePath + File.separator
+    String repo = new File(repository).absolutePath + File.separator
     String webRootPrefix = 'web/'
     String indexPage = webRootPrefix + 'index.html'
 
@@ -50,7 +52,10 @@ void addRoutes(httpServer) {
             req.response.chunked = true
             req.response.putHeader('Content-Type', 'application/json')
 
-            vertx.fileSystem.readDir(repo, '.*\\.txt') { ar ->
+
+	    def extensions = ['txt','avi','jpg']
+
+            vertx.fileSystem.readDir(repo, '(?i).*\\.('+extensions.join('|')+')') { ar ->
                 req.response << '{"files":['
 
                 if (ar.succeeded() && ar.result) {
